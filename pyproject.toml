@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "exocortex-core"
+version = "0.1.0"
+description = "SuperInstance Exocortex — external brain architecture for small local models."
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "SuperInstance"}]
+requires-python = ">=3.10"
+dependencies = [
+    "batten-spline @ git+https://github.com/SuperInstance/batten-spline.git",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[project.urls]
+Homepage = "https://github.com/SuperInstance/exocortex-core"
+Repository = "https://github.com/SuperInstance/exocortex-core"
+Issues = "https://github.com/SuperInstance/exocortex-core/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
