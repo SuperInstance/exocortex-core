@@ -20,6 +20,7 @@ from .distiller import (
     stage_teacher,
     stage_update_prompt,
 )
+from ._embed import hash_embedding
 from .memory import InMemoryBackend, MemoryIndex, SQLiteVecBackend, VectorBackend
 from .reflex_cache import NailReflex, ReflexCache
 from .router import ExoRouter, RouteDecision, RouteTarget
@@ -60,6 +61,8 @@ __all__ = [
     "stage_distill",
     "stage_update_prompt",
     "run_iteration",
+    # Embedding
+    "hash_embedding",
     # Meta
     "__version__",
 ]

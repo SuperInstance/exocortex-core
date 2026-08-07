@@ -5,6 +5,17 @@ All notable changes to Exocortex-Core will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- `hash_embedding` now exported from the top-level `exocortex` package.
+- `CONTRIBUTING.md` with development setup, style guide, architecture overview, and PR checklist.
+- 30+ additional tests covering uncovered code paths (vector NN escape-hatch blocking, cloud-action voice triggers, empty-cache persistence, confidence rounding, pipeline integration).
+- `tests/test_coverage_gaps.py` — targeted tests for edge cases that were previously uncovered.
+
+### Changed
+- `__init__.py` now exports `hash_embedding` in `__all__`.
+
 ## [0.1.0] - 2025-08-04
 
 ### Added
