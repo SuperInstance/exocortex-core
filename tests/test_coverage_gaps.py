@@ -249,6 +249,11 @@ class TestReflexCacheCosineUtil:
         assert _cosine_similarity([1, 0], [1, 0]) == pytest.approx(1.0)
         assert _cosine_similarity([1, 0], [0, 1]) == pytest.approx(0.0)
 
+    def test_lookup_on_empty_cache_returns_none(self):
+        """Vector NN on an empty cache should return None (early-return path)."""
+        cache = ReflexCache()
+        assert cache.lookup("anything") is None
+
 
 # ============================================================
 # Integration: full pipeline
