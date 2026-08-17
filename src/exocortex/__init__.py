@@ -21,6 +21,12 @@ from .distiller import (
     stage_update_prompt,
 )
 from ._embed import hash_embedding
+from .determinism_dial import (
+    DeterminismDial,
+    DialBase,
+    ELEPHANT_AVAILABLE,
+    register as register_determinism_dial,
+)
 from .memory import InMemoryBackend, MemoryIndex, SQLiteVecBackend, VectorBackend
 from .reflex_cache import NailReflex, ReflexCache
 from .router import ExoRouter, RouteDecision, RouteTarget
@@ -63,6 +69,11 @@ __all__ = [
     "run_iteration",
     # Embedding
     "hash_embedding",
+    # Determinism dial
+    "DeterminismDial",
+    "DialBase",
+    "ELEPHANT_AVAILABLE",
+    "register_determinism_dial",
     # Meta
     "__version__",
 ]
