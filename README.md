@@ -104,3 +104,57 @@ pytest
 ## License
 
 MIT — see `LICENSE`.
+
+## The full loop, end to end
+
+A request enters the cortex and falls through the cascade:
+
+```
+voice/trigger
+   │
+   ▼
+voice_gate  ──── exact trigger table match? ────► REFLEX (instant, free)
+   │ no match / ambiguous
+   ▼
+router ──────── batten-spline over the request embedding:
+   │              fog_density low  → LOCAL (small model, GPU, private)
+   │              fog_density high → CLOUD (teacher, expensive, smart)
+   ▼
+outcome feedback ── every decision is scored; the spline reshapes;
+   │                 reflex_cache confidence updates asymmetrically
+   ▼
+distiller ────── teacher writes a lesson → student tries it →
+   │              positive delta compiles to a .nail reflex.
+   ▼
+Next time the same shape arrives, it never gets past voice_gate.
+```
+
+The bond gates the whole stack: `BondGate` accumulates trust from events
+(`won_argument`, `returned`, `ignored_safety_warning`…) and unlocks
+autonomy tiers. Low bond → everything asks first. High bond → the cortex
+acts and reports. Trust is a budget, and the ledger is explicit.
+
+### Why "exocortex"
+
+Because the model is frozen on purpose. Wesley-class locals (2–3B params)
+are cheap, private, and ours — but they plateau. The exocortex is the
+growth without the retrain: reflexes for the fast path, memory for the
+slow path, teachers for the leaps, and a dial that knows when the room
+is being a machine versus being alive.
+
+## Install & test
+
+```bash
+pip install -e ".[dev]"     # pulls batten-spline from the SuperInstance org
+python -m pytest            # suite is stdlib-light; sqlite-vec is optional
+```
+
+## Fleet context
+
+- **batten-spline** — the router's spine (cascade with acclimation fit)
+- **elephant** — the dial bank the determinism dial registers into
+- **thought-amplifier / compaction-teacher** — the distillation lineage
+- **wesley** — the reference small model this cortex wraps
+
+Built and matured through the Aug 2026 maturation waves; the determinism
+dial landed 2026-08-17 as the 10th dial.
